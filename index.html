@@ -1,10 +1,258 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Video Portfolio</title>
+    <style>
+        /* --- BASIC RESET & CINEMATIC DARK THEME --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth; /* This makes the page scroll smoothly when you click a link */
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0a0a0a; /* Dark cinematic background */
+            color: #f0f0f0; /* Light text */
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.9);
+            z-index: 100;
+            border-bottom: 1px solid #222;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            margin-left: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #aaa;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #888;
+            max-width: 600px;
+        }
+
+        /* --- PORTFOLIO GRID (The Clickable Images) --- */
+        .portfolio-grid {
+            padding: 50px 5%;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid #222;
+        }
+        .grid-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .grid-item:hover img {
+            transform: scale(1.05);
+            opacity: 0.7;
+        }
+        .grid-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .grid-item:hover .overlay {
+            opacity: 1;
+        }
+        .overlay span {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid #fff;
+            padding: 10px 20px;
+        }
+
+        /* --- VIDEO CATEGORY SECTIONS --- */
+        .category-section {
+            padding: 80px 5%;
+            border-top: 1px solid #222;
+        }
+        .category-section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .category-section p {
+            color: #888;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background-color: #111;
+            border: 1px solid #333;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>I built this website directly on GitHub!</p>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">YOUR NAME</div>
+        <div class="nav-links">
+            <a href="#commercials">Commercials</a>
+            <a href="#music-videos">Music Videos</a>
+            <a href="#documentaries">Documentaries</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Visual Storyteller</h1>
+        <p>I create cinematic videos and compelling visual content. Scroll down to explore my work by category.</p>
+    </section>
+
+    <!-- CLICKABLE PORTFOLIO GRID -->
+    <section class="portfolio-grid">
+        <h2 class="section-title">Select a Category</h2>
+        <div class="grid">
+            <!-- Item 1: Links to #commercials section below -->
+            <a href="#commercials" class="grid-item">
+                <!-- Replace the src URL below with your own image link later -->
+                <img src="https://placehold.co/600x400/1a1a1a/FFF?text=Commercials" alt="Commercials">
+                <div class="overlay"><span>View Commercials</span></div>
+            </a>
+
+            <!-- Item 2: Links to #music-videos section below -->
+            <a href="#music-videos" class="grid-item">
+                <img src="https://placehold.co/600x400/1a1a1a/FFF?text=Music+Videos" alt="Music Videos">
+                <div class="overlay"><span>View Music Videos</span></div>
+            </a>
+
+            <!-- Item 3: Links to #documentaries section below -->
+            <a href="#documentaries" class="grid-item">
+                <img src="https://placehold.co/600x400/1a1a1a/FFF?text=Documentaries" alt="Documentaries">
+                <div class="overlay"><span>View Documentaries</span></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VIDEO CATEGORY SECTIONS (Where the page scrolls to) -->
+    
+    <section id="commercials" class="category-section">
+        <h2>Commercials</h2>
+        <p>Brand films and advertising content designed to leave a lasting impression.</p>
+        <div class="video-container">
+            <!-- Replace the 'src' below with your actual YouTube/Vimeo embed link -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="music-videos" class="category-section">
+        <h2>Music Videos</h2>
+        <p>The fusion of music and cinema to capture the true essence of the artist.</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="documentaries" class="category-section">
+        <h2>Documentaries</h2>
+        <p>Authentic stories that highlight real people and real places.</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>contact@yourname.com</p>
+    </footer>
+
 </body>
 </html>
