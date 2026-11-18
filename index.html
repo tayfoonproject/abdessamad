@@ -78,10 +78,7 @@
             text-transform: uppercase;
             color: #000;
         }
-        .hero-content p {
-            max-width: 600px;
-            color: #000;
-        }
+        .hero-content p { max-width: 600px; color: #000; }
 
         /* --- SCROLL CUE --- */
         .scroll-cue {
@@ -107,81 +104,44 @@
         @keyframes pulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
 
         /* --- PORTFOLIO SECTION --- */
-        .portfolio-section {
-            padding: 80px 5%;
-            text-align: center;
-            background-color: #0a0a0a;
-        }
+        .portfolio-section { padding: 80px 5%; text-align: center; background-color: #0a0a0a; }
         .portfolio-title {
             font-size: 1.8rem;
-            font-weight: 700; /* Same as ABDESSAMAD */
+            font-weight: 700;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: #ff3333; /* Red */
+            color: #ff3333;
             margin-bottom: 50px;
         }
-        .category-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
+        .category-links { display: flex; flex-direction: column; align-items: center; gap: 25px; }
         .category-link {
             color: #ffffff;
             font-size: 1.1rem;
-            font-weight: 400; /* Thin but visible */
+            font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            position: relative;
         }
-        .category-link:hover {
-            color: #ff3333; /* Turns red on hover */
-            letter-spacing: 4px; /* Subtle expansion effect */
-        }
+        .category-link:hover { color: #ff3333; letter-spacing: 4px; }
 
         /* --- VIDEO CATEGORY SECTIONS --- */
-        .category-detail-section {
-            padding: 80px 5%;
-            border-top: 1px solid #222;
-        }
+        .category-detail-section { padding: 80px 5%; border-top: 1px solid #222; }
         .category-detail-section h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            color: #ff3333;
+            font-size: 1.8rem; font-weight: 700; letter-spacing: 2px;
+            margin-bottom: 10px; text-transform: uppercase; color: #ff3333;
         }
-        .category-detail-section p {
-            color: #888;
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
+        .category-detail-section p { color: #888; margin-bottom: 30px; max-width: 600px; }
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            background-color: #111;
-            border: 1px solid #333;
+            position: relative; padding-bottom: 56.25%; height: 0;
+            background-color: #111; border: 1px solid #333;
         }
-        .video-container iframe, 
-        .video-container video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-            object-fit: cover;
+        .video-container iframe, .video-container video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border: none; object-fit: cover;
         }
 
         /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 0.85rem;
-        }
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid #222; color: #555; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -191,11 +151,11 @@
     </nav>
 
     <section class="hero">
-        <!-- LOCAL VIDEO BACKGROUND -->
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="White Waves - Background_2160p.mp4" type="video/mp4">
+        <!-- LOCAL VIDEO BACKGROUND (smaller file, no spaces in name) -->
+        <video id="bgVideo" class="hero-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture>
+            <source src="background.mp4" type="video/mp4">
         </video>
-        
+
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
@@ -209,7 +169,6 @@
         </a>
     </section>
 
-    <!-- NEW SIMPLE TEXT PORTFOLIO LINKS -->
     <section id="portfolio" class="portfolio-section">
         <h2 class="portfolio-title">PORTFOLIO</h2>
         <div class="category-links">
@@ -220,14 +179,11 @@
         </div>
     </section>
 
-    <!-- VIDEO CATEGORY SECTIONS (Ready for your videos) -->
-    
     <section id="international-clients" class="category-detail-section">
         <h2>International Clients</h2>
         <p>High-end productions for global brands.</p>
         <div class="video-container">
-            <!-- We will replace this with your video next -->
-            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
+            <p style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#555;">Video coming soon</p>
         </div>
     </section>
 
@@ -235,7 +191,7 @@
         <h2>Entertainment</h2>
         <p>Dynamic visuals for the entertainment industry.</p>
         <div class="video-container">
-            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
+            <p style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#555;">Video coming soon</p>
         </div>
     </section>
 
@@ -243,7 +199,7 @@
         <h2>Wedding Events</h2>
         <p>Capturing the most important moments with cinematic elegance.</p>
         <div class="video-container">
-            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
+            <p style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#555;">Video coming soon</p>
         </div>
     </section>
 
@@ -251,13 +207,26 @@
         <h2>Furniture</h2>
         <p>Showcasing design, texture, and craftsmanship.</p>
         <div class="video-container">
-            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
+            <p style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#555;">Video coming soon</p>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 ABDESSAMAD. All rights reserved.</p>
     </footer>
+
+    <!-- This tiny script forces the phone to start the video -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var v = document.getElementById('bgVideo');
+            if (!v) return;
+            var tryPlay = function () { v.play().catch(function () {}); };
+            tryPlay();
+            v.addEventListener('canplay', tryPlay);
+            // Some phones only start the video after the first tap
+            document.addEventListener('touchstart', function once() { tryPlay(); }, { once: true });
+        });
+    </script>
 
 </body>
 </html>
