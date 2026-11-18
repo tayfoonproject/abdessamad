@@ -30,21 +30,21 @@
             justify-content: center;
             align-items: center;
             padding: 25px 5%;
-            background: transparent;   /* no bar of its own */
+            background: transparent;
             z-index: 3;
         }
         .logo {
             font-size: 1.8rem;
-            font-weight: 700;          /* bold, not black */
+            font-weight: 700;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: #000;               /* black over the video */
+            color: #000;
         }
 
-        /* --- HERO (full-screen video background) --- */
+        /* --- HERO (clean HTML5 background video) --- */
         .hero {
             position: relative;
-            height: 100vh;             /* fills the whole screen -> fixes "short page" */
+            height: 100vh;
             min-height: 600px;
             overflow: hidden;
             display: flex;
@@ -54,20 +54,16 @@
             text-align: center;
             padding: 0 20px;
         }
-        /* the video stretched to cover the screen */
         .hero-video {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw; height: 56.25vw;          /* 16:9 */
-            min-width: 177.77vh; min-height: 100vh; /* cover trick */
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;          /* fills screen, no letterbox, no UI */
             z-index: 0;
-            pointer-events: none;                   /* scroll passes through */
+            pointer-events: none;       /* scroll passes through */
         }
-        .hero-video iframe { width: 100%; height: 100%; border: 0; pointer-events: none; }
 
-        /* light tint so black text is readable over the video.
-           Tweak this number: 0 = no tint, 1 = fully white. */
+        /* light tint so black text stays readable. 0 = none, 1 = white. */
         .hero-overlay {
             position: absolute; inset: 0;
             background: rgba(255, 255, 255, 0.35);
@@ -83,12 +79,9 @@
             text-transform: uppercase;
             color: #000;
         }
-        .hero-content p {
-            max-width: 600px;
-            color: #000;
-        }
+        .hero-content p { max-width: 600px; color: #000; }
 
-        /* --- SCROLL CUE (replaces "select a category") --- */
+        /* --- SCROLL CUE --- */
         .scroll-cue {
             position: absolute;
             bottom: 30px; left: 50%;
@@ -99,8 +92,8 @@
             align-items: center;
             gap: 8px;
             color: #000;
-            font-size: 0.7rem;       /* smaller */
-            font-weight: 300;        /* thin, not bold */
+            font-size: 0.7rem;
+            font-weight: 300;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
@@ -159,10 +152,12 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-video">
-            <!-- Background video. If the owner blocked embedding, you'll see a black box. -->
-            <iframe src="https://www.youtube.com/embed/krDoV8ur4L4?autoplay=1&mute=1&loop=1&playlist=krDoV8ur4L4&controls=0&modestbranding=1&rel=0&disablekb=1&playsinline=1" allow="autoplay; encrypted-media"></iframe>
-        </div>
+        <!-- CLEAN BACKGROUND VIDEO. Right now it uses a temporary sample clip
+             so you can SEE there's no YouTube UI. Replace the src below with
+             your own video file (see Step 2). -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        </video>
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
