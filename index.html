@@ -22,7 +22,7 @@
         }
         a { text-decoration: none; color: inherit; }
 
-        /* --- HEADER (melts into the video) --- */
+        /* --- HEADER --- */
         nav {
             position: absolute;
             top: 0; left: 0; width: 100%;
@@ -41,7 +41,7 @@
             color: #000;
         }
 
-        /* --- HERO (clean HTML5 background video) --- */
+        /* --- HERO (Local Video Background) --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -56,20 +56,19 @@
         }
         .hero-video {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;          /* fills screen, no letterbox, no UI */
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            object-fit: cover;
             z-index: 0;
-            pointer-events: none;       /* scroll passes through */
+            pointer-events: none;
         }
-
-        /* light tint so black text stays readable. 0 = none, 1 = white. */
         .hero-overlay {
             position: absolute; inset: 0;
             background: rgba(255, 255, 255, 0.35);
             z-index: 1;
         }
-
         .hero-content { position: relative; z-index: 2; }
         .hero-content h1 {
             font-size: 2.5rem;
@@ -79,7 +78,10 @@
             text-transform: uppercase;
             color: #000;
         }
-        .hero-content p { max-width: 600px; color: #000; }
+        .hero-content p {
+            max-width: 600px;
+            color: #000;
+        }
 
         /* --- SCROLL CUE --- */
         .scroll-cue {
@@ -104,45 +106,82 @@
         }
         @keyframes pulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
 
-        /* --- PORTFOLIO GRID --- */
-        .portfolio-grid { padding: 60px 5%; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* --- PORTFOLIO SECTION --- */
+        .portfolio-section {
+            padding: 80px 5%;
+            text-align: center;
+            background-color: #0a0a0a;
         }
-        .grid-item { position: relative; overflow: hidden; cursor: pointer; border: 1px solid #222; }
-        .grid-item img {
-            width: 100%; height: 300px; object-fit: cover; display: block;
-            transition: transform .4s ease, opacity .4s ease;
+        .portfolio-title {
+            font-size: 1.8rem;
+            font-weight: 700; /* Same as ABDESSAMAD */
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #ff3333; /* Red */
+            margin-bottom: 50px;
         }
-        .grid-item:hover img { transform: scale(1.05); opacity: .7; }
-        .grid-item .overlay {
-            position: absolute; inset: 0;
-            display: flex; justify-content: center; align-items: center;
-            background: rgba(0,0,0,.4); opacity: 0; transition: opacity .3s;
+        .category-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
         }
-        .grid-item:hover .overlay { opacity: 1; }
-        .overlay span {
-            font-size: 1rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2px; border: 1px solid #fff; padding: 10px 20px;
+        .category-link {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 400; /* Thin but visible */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .category-link:hover {
+            color: #ff3333; /* Turns red on hover */
+            letter-spacing: 4px; /* Subtle expansion effect */
         }
 
         /* --- VIDEO CATEGORY SECTIONS --- */
-        .category-section { padding: 80px 5%; border-top: 1px solid #222; }
-        .category-section h2 {
-            font-size: 1.8rem; font-weight: 700; letter-spacing: 2px;
-            margin-bottom: 10px; text-transform: uppercase;
+        .category-detail-section {
+            padding: 80px 5%;
+            border-top: 1px solid #222;
         }
-        .category-section p { color: #888; margin-bottom: 30px; max-width: 600px; }
+        .category-detail-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #ff3333;
+        }
+        .category-detail-section p {
+            color: #888;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
         .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0;
-            background-color: #111; border: 1px solid #333;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background-color: #111;
+            border: 1px solid #333;
         }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-container iframe, 
+        .video-container video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            object-fit: cover;
+        }
 
         /* --- FOOTER --- */
-        footer { text-align: center; padding: 40px 20px; border-top: 1px solid #222; color: #555; font-size: .85rem; }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -152,12 +191,11 @@
     </nav>
 
     <section class="hero">
-        <!-- CLEAN BACKGROUND VIDEO. Right now it uses a temporary sample clip
-             so you can SEE there's no YouTube UI. Replace the src below with
-             your own video file (see Step 2). -->
+        <!-- LOCAL VIDEO BACKGROUND -->
         <video class="hero-video" autoplay muted loop playsinline>
-              <source src="White Waves - Background_2160p.mp4" type="video/mp4">
+            <source src="White Waves - Background_2160p.mp4" type="video/mp4">
         </video>
+        
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
@@ -171,44 +209,49 @@
         </a>
     </section>
 
-    <section id="portfolio" class="portfolio-grid">
-        <div class="grid">
-            <a href="#commercials" class="grid-item">
-                <img src="https://placehold.co/600x400/1a1a1a/FFF?text=Commercials" alt="Commercials">
-                <div class="overlay"><span>View Commercials</span></div>
-            </a>
-            <a href="#music-videos" class="grid-item">
-                <img src="https://placehold.co/600x400/1a1a1a/FFF?text=Music+Videos" alt="Music Videos">
-                <div class="overlay"><span>View Music Videos</span></div>
-            </a>
-            <a href="#documentaries" class="grid-item">
-                <img src="https://placehold.co/600x400/1a1a1a/FFF?text=Documentaries" alt="Documentaries">
-                <div class="overlay"><span>View Documentaries</span></div>
-            </a>
+    <!-- NEW SIMPLE TEXT PORTFOLIO LINKS -->
+    <section id="portfolio" class="portfolio-section">
+        <h2 class="portfolio-title">PORTFOLIO</h2>
+        <div class="category-links">
+            <a href="#international-clients" class="category-link">International Clients</a>
+            <a href="#entertainment" class="category-link">Entertainment</a>
+            <a href="#wedding-events" class="category-link">Wedding Events</a>
+            <a href="#furniture" class="category-link">Furniture</a>
         </div>
     </section>
 
-    <section id="commercials" class="category-section">
-        <h2>Commercials</h2>
-        <p>Brand films and advertising content designed to leave a lasting impression.</p>
+    <!-- VIDEO CATEGORY SECTIONS (Ready for your videos) -->
+    
+    <section id="international-clients" class="category-detail-section">
+        <h2>International Clients</h2>
+        <p>High-end productions for global brands.</p>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <!-- We will replace this with your video next -->
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
         </div>
     </section>
 
-    <section id="music-videos" class="category-section">
-        <h2>Music Videos</h2>
-        <p>The fusion of music and cinema to capture the true essence of the artist.</p>
+    <section id="entertainment" class="category-detail-section">
+        <h2>Entertainment</h2>
+        <p>Dynamic visuals for the entertainment industry.</p>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
         </div>
     </section>
 
-    <section id="documentaries" class="category-section">
-        <h2>Documentaries</h2>
-        <p>Authentic stories that highlight real people and real places.</p>
+    <section id="wedding-events" class="category-detail-section">
+        <h2>Wedding Events</h2>
+        <p>Capturing the most important moments with cinematic elegance.</p>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
+        </div>
+    </section>
+
+    <section id="furniture" class="category-detail-section">
+        <h2>Furniture</h2>
+        <p>Showcasing design, texture, and craftsmanship.</p>
+        <div class="video-container">
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;">Video coming soon</p>
         </div>
     </section>
 
